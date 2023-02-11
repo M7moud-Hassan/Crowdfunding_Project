@@ -10,7 +10,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 <!-- site metas -->
-<title>Capiclean</title>
+<title>{% block title %}
+  Title
+{% endblock %}</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content=""> 
@@ -30,6 +32,7 @@
 <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+ <link rel="stylesheet" href="{% static 'css/project_add.css' %}">
 </head>
 <body>
   <!--header section start -->
@@ -75,7 +78,7 @@
             <h1 class="banner_taital">Best YOUR</h1> 
             <h1 class="banner_taital_1">house CLEAN</h1>
             <p class="banner_text">Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim</p>
-            <div class="contact_bt"><a href="contact.html">CONTACT US<span class="contact_padding"><img src="images/contact-icon.png' %}"></span></a></div>
+            <div class="contact_bt"><a href="contact.html">CONTACT US<span class="contact_padding"><img src="{% static 'images/contact-icon.png' %}"></span></a></div>
           </div>
           <div class="col-sm-2">
             <div class="play_icon"><a href="#"><img src="{% static 'images/play-icon.png' %}"></a></div>
@@ -88,7 +91,11 @@
     </div>
     <!-- banner section end -->
     </div>
-  {{context}}
+{% block content %}
+  {% for p in projects %}
+  {{p.id}}
+  {% endfor %}
+  {% endblock %}
     <div class="footer_section layout_padding">
       <div class="container">
         <div class="footer_main">
@@ -144,16 +151,17 @@
     </div>
     <!-- copyright section end -->
     <!-- Javascript files-->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery-3.0.0.min.js"></script>
-    <script src="js/plugin.js"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
+    <script src="{% static 'js/plugin.js' %}"></script>
     <!-- sidebar -->
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
     <!-- javascript --> 
-    <script src="js/owl.carousel.js"></script>
+    <script src="{% static 'js/owl.carousel.js' %}"></script>
+    <script src="{% static 'js/project_add.js' %}"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
     <script>
     $(document).ready(function(){
@@ -178,6 +186,7 @@
      function closeNav() {
      document.getElementById("myNav").style.width = "0%";
     }
-    </script>  
+    </script>
+
 </body>
 </html>
