@@ -7,5 +7,7 @@ class RegisterUser(models.Model):
     last_name = models.CharField(max_length=30)
     user_email=models.CharField(max_length=70)
     user_password = models.CharField(max_length=30)
-    user_mobile = models.IntegerField(max_length=11)
+    user_mobile = models.IntegerField
     user_image = models.ImageField
+
+class
