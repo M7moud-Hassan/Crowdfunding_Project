@@ -1,6 +1,11 @@
 from django.db import models
 
 # Create your models here.
+class Category (models.Model):
+    id=models.AutoField(primary_key=True)
+    name=models.CharField(max_length=50)
+
+
 
 class Projects (models.Model):
     id=models.AutoField(primary_key=True)
@@ -11,9 +16,6 @@ class Projects (models.Model):
     start=models.DateTimeField()
     end = models.DateTimeField()
 
-class Category (models.Model):
-    id=models.BigAutoField(primary_key=True)
-    name=models.CharField(max_length=50)
 
 class Pictures (models.Model):
     id=models.BigAutoField(primary_key=True)
@@ -21,7 +23,7 @@ class Pictures (models.Model):
     id_project = models.ForeignKey(Projects, on_delete=models.CASCADE)
 
 class Tags (models.Model):
-    id=models.BigAutoField(primary_key=True)
+    id=models.AutoField(primary_key=True)
     tag=models.CharField(max_length=50)
     id_project = models.ForeignKey(Projects, on_delete=models.CASCADE)
 
