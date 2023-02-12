@@ -1,0 +1,43 @@
+{% extends  'base_page.html' %}
+{% block title %}
+add Project
+{% endblock %}
+{% block content %}
+<form method="POST">
+ {%csrf_token%}
+ <div id="svg_wrap"></div>
+<h1>Add  Project</h1>
+<section>
+ <p>Project information</p>
+  <input type="text" placeholder="title" name="title" />
+ <textarea rows="4" placeholder="description" name="details"></textarea>
+ <select name="category">
+  {% for cat in categories %}
+  <option value="{{cat.id}}">{{cat.name}}</option>
+  {% endfor %}
+ </select>
+<input type="number" placeholder="total_target" name="total_target" />
+</section>
+
+<section>
+ <p>Address</p>
+ <input type="date" placeholder="start" name="start" />
+ <input type="date" placeholder="end" name="end" />
+ <input type="file" id="img" name="imgs[]" accept="image/*" multiple>
+</section>
+
+<section>
+ <p>Contact information</p>
+ <input type="text" placeholder="Tags" name="tags" />
+</section>
+
+<section>
+ <p>General condtitions</p>
+ <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</section>
+
+ <div class="button" id="prev">&larr; Previous</div>
+<div class="button" id="next">Next &rarr;</div>
+<input class="button" id="submit" type="submit" style="width:25%" value="Agree and send application">
+</form>
+{% endblock %}
