@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+
+{%block title%}
+    Register Page
+{%endblock%}
+
+{%block parentBody%}
+<div class="container mb-5">
+<form class="row g-3" method="post">
+  {%csrf_token%}
+  <div class="col-md-6 " >
+    <label for="inputEmail4" class="form-label">First name</label>
+    <input type="text" class="form-control" id="inputEmail4" name="first_name">
+  </div>
+  <div class="col-md-6">
+    <label  class="form-label">Last name</label>
+    <input type="text" class="form-control"  name="last_name">
+  </div>
+  <div class="col-12">
+    <label for="inputAddress" class="form-label"> Email </label>
+    <input type="email" class="form-control" id="inputAddress" placeholder="examble@examble.ex" name="user_email">
+  </div>
+  <div class="col-md-6">
+    <label  class="form-label">Password</label>
+        <input type="password" class="form-control"  name="user_password">
+  </div>
+    <div class="col-md-6">
+    <label  class="form-label">Re-type Password</label>
+        <input type="password" class="form-control" >
+  </div>
+  <div class="col-md-6">
+    <label for="inputCity" class="form-label">Mobile number</label>
+    <input type="text" class="form-control" id="inputCity" name="user_mobile">
+  </div>
+    <div class="col-md-6">
+    <label class="form-label">Image</label>
+    <input type="file" class="form-control" name="user_image" >
+  </div>
+    <button type="submit" class="btn btn-primary m-3">Sign in</button>
+</form>
+</div>
+
+
+{%endblock%}
