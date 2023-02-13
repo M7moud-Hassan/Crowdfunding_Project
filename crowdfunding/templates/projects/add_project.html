@@ -1,43 +1,84 @@
-{% extends  'base_page.html' %}
-{% block title %}
-add Project
-{% endblock %}
+{% extends 'base_page.html' %}
+
+{% block title %} Create Project {% endblock title %}
+
 {% block content %}
+
 <form method="POST">
  {%csrf_token%}
  <div id="svg_wrap"></div>
-<h1>Add  Project</h1>
+<h1 style="text-align:center">Add  Project</h1>
 <section>
  <p>Project information</p>
-  <input type="text" placeholder="title" name="title" />
- <textarea rows="4" placeholder="description" name="details"></textarea>
- <select name="category">
-  {% for cat in categories %}
-  <option value="{{cat.id}}">{{cat.name}}</option>
-  {% endfor %}
- </select>
-<input type="number" placeholder="total_target" name="total_target" />
+  <div class="mb-3">
+            <label class="form-label">Project Title</label>
+            {{ form.title }}
+          </div>
+          <span class="text-error">{{ form.title.errors }}</span>
+
+          <div class="mb-3">
+            <label class="form-label">Details</label>
+            {{ form.details }}
+          </div>
+          <span class="text-error">{{ form.details.errors }}</span>
+
+          <div class="mb-3">
+            <label class="form-label">Total Target</label>
+            {{ form.total_target }}
+          </div>
+          <span class="text-error">{{ form.total_target.errors }}</span>
+
+          <div class="mb-3">
+            <label class="form-label">Start Date & Time</label>
+            {{ form.start_time }}
+          </div>
+          <span class="text-error">{{ form.start_time.errors }}</span>
+
+          <div class="mb-3">
+            <label class="form-label">End Date & Time</label>
+
+            {{ form.end_time }}
+          </div>
+          <span class="text-error">{{ form.end_time.errors }}</span>
 </section>
 
 <section>
  <p>Address</p>
- <input type="date" placeholder="start" name="start" />
- <input type="date" placeholder="end" name="end" />
- <input type="file" id="img" name="imgs[]" accept="image/*" multiple>
+ <div class="mb-3">
+            <label class="form-label">Photos</label><br />
+            <input class="form-control" type="file" name="images" multiple required>
+          </div>
 </section>
 
 <section>
  <p>Contact information</p>
- <input type="text" placeholder="Tags" name="tags" />
+<div class="mb-3">
+            <label class="form-label">Category</label>
+
+            {{ form.category }}
+          </div>
+          <span class="text-error">{{ form.category.errors }}</span>
+
+
+          <div class="mb-3">
+            <label class="form-label">Add tag</label>
+            <input type="text" class="inp form-control my-1" maxlength="8" name="newTag" class="form-control"  id="id_tag"/>
+            <p style="margin: 2px; color: black; font-size: small; font-weight: 550;">or choose one : </p>
+            {{ form.tag }}
+          </div>
+          <span class="text-error">{{ form.tag.errors }}</span>
+
 </section>
 
 <section>
  <p>General condtitions</p>
  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </section>
-
+<div class="container" style="text-align:center">
  <div class="button" id="prev">&larr; Previous</div>
 <div class="button" id="next">Next &rarr;</div>
 <input class="button" id="submit" type="submit" style="width:25%" value="Agree and send application">
-</form>
-{% endblock %}
+
+</div>
+ </form>
+{% endblock content %}
