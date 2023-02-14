@@ -28,7 +28,6 @@ class Project(models.Model):
     total_target = models.FloatField()
     start_time = models.DateTimeField(default=timezone.now)
     end_time = models.DateTimeField(default=timezone.now)
-    is_featured = models.BooleanField(default=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     tag = models.ManyToManyField(Tag, null=True)
@@ -58,19 +57,11 @@ class Donation(models.Model):
 
 
 class ProjectReport(models.Model):
-    report = models.CharField(
-        max_length=200,
-        default='bad',
-    )
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class CommentReport(models.Model):
-    report = models.CharField(
-        max_length=200,
-        default='bad',
-    )
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -79,7 +70,6 @@ class Reply(models.Model):
     reply = models.CharField(max_length=30)
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Rate(models.Model):
