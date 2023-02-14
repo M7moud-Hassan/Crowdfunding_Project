@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93e093e2-3455-4faa-930d-3f47dcc5b1fa" name="Changes" comment="">
+    <list default="true" id="282aba89-2f53-43e8-9d9f-672bd7790a88" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crowdfunding/crowdfunding/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/crowdfunding/crowdfunding/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crowdfunding/projects_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/crowdfunding/projects_app/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +21,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2LVSY2ognWxm5tnKv3x5LAMJB4w" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2Lb8uXbwuOeQYt6oMuZS2yzV28N" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -35,11 +35,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="93e093e2-3455-4faa-930d-3f47dcc5b1fa" name="Changes" comment="" />
-      <created>1675954813943</created>
+      <changelist id="282aba89-2f53-43e8-9d9f-672bd7790a88" name="Changes" comment="" />
+      <created>1676128647197</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1675954813943</updated>
+      <updated>1676128647197</updated>
     </task>
     <servers />
   </component>
