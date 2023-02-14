@@ -1,38 +1,78 @@
+from django.utils import timezone
+
 from django.db import models
 
 
-# Create your models here.
-
 class Category(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 
-class Projects(models.Model):
+class Tag(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+class User(models.Model):
     id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=50)
-    details = models.CharField(max_length=500)
-    total_target = models.BigIntegerField()
+    name = models.CharField(max_length=100)
+
+
+class Project(models.Model):
+    title = models.CharField(max_length=100)
+    details = models.TextField()
+    total_target = models.FloatField()
+    start_time = models.DateTimeField(default=timezone.now)
+    end_time = models.DateTimeField(default=timezone.now)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    start = models.DateTimeField()
-    end = models.DateTimeField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    tag = models.ManyToManyField(Tag, null=True)
+
+    def __str__(self):
+        return self.title
 
 
-class Pictures(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    image = models.ImageField()
-    id_project = models.ForeignKey(Projects, on_delete=models.CASCADE)
+class Image(models.Model):
+    images = models.ImageField(upload_to="uploads/projects/")
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
 
-class Tags(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    tag = models.CharField(max_length=50)
-    id_project = models.ForeignKey(Projects, on_delete=models.CASCADE)
+class Comment(models.Model):
+    comment = models.TextField()
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-# def user_directory_path(instance, filename):
-#     # file will be uploaded to MEDIA_ROOT / user_<id>/<filename>
-#     return 'user_{0}/{1}'.format(instance.user.id, filename)
-#
-#
-# class MyModel(models.Model):
-#     upload = models.ImageField(upload_to=user_directory_path)
+    def __str__(self):
+        return str(f'comment by {self.user.first_name} on {self.project.title} project.')
+
+
+class Donation(models.Model):
+    donation = models.FloatField()
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class ProjectReport(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class CommentReport(models.Model):
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Reply(models.Model):
+    reply = models.CharField(max_length=30)
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Rate(models.Model):
+    rate = models.IntegerField()
+    projcet = models.ForeignKey(Project, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
