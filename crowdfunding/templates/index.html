@@ -48,8 +48,9 @@
               <ul>
                 <div class="togle_3">
                   <div class="menu_main">
-                    <div class="padding_left0"><a href="#">Register</a>
-                    <span class="padding_left0"><a href="#">Login</a></span></div>
+                    <div class="padding_left0">
+
+                    </div>
                   </div>
                   <div class="shoping_bag"><img src="{% static 'images/search-icon.png' %}"></div>
                 </div>
@@ -70,6 +71,14 @@
             </div>
           </div>
         </div>
+      </div>
+        <div style="text-align:end" class="container">
+       {%if request.session.user_email is None%}
+          <span style="margin-right:2.5%;font-weight:600;font-size:2.5vw"><a href="{% url 'login' %}">Login</a></span>
+          <span style="margin-left:2.5%;font-weight:600;font-size:2.5vw"><a href="{% url 'register' %}">Register</a></span>
+       {%else%}
+          <span style="font-weight:600;font-size:5vw"><a href="{% url 'logout' %}">Logout</a></span>
+       {%endif%}
       </div>
     <!-- banner section start -->
     <div class="banner_section layout_padding">
