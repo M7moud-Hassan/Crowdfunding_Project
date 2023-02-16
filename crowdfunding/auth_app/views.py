@@ -11,6 +11,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http.response import HttpResponse
 from django.http.response import HttpResponseRedirect
+from .form import UserRegistrationForm
 
 # Create your views here.
 
@@ -24,10 +25,10 @@ def register(r):
              last_name=r.POST['last_name'],
              user_email=r.POST['user_email'],
              user_password=r.POST['user_password'],
-             #user_mobile=r.POST['user_mobile'],
-             #user_image=r.FILES['user_image'],
+             user_mobile=r.POST['user_mobile'],
+             user_image=r.FILES['user_image'],
          )
-         return render(r,'index.html')
+         return render(r,'login.html')
     else:
         return render(r,'register.html')
 
@@ -54,4 +55,25 @@ def logout(r):
 
 def view(r,key):
     view = RegisterUser.objects.filter(user_id=key)
+
+
+#################
+
+def regDjango(r):
+    obj=RegisterUser.objects.get(user_id=1)
+
+    Context = {
+        'object': obj
+    }
+    return render(r,'registerDjango.html',Context)
+
+def registerDjango(r):
+    form = UserRegistrationForm(r.POST or None)
+    if form.is_valid():
+        form.save()
+
+    Context = {
+        'form':form
+    }
+    return render(r,'registerDjango.html',Context)
 

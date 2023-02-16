@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{%block title%}
+    Register Page
+{%endblock%}
+
+{%block parentBody%}
+<div class="container">
+<form method="post">
+  {%csrf_token%}
+  {{ form.as_p }}
+</form>
+</div>
+{%endblock%}

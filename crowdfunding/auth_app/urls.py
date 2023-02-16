@@ -26,11 +26,13 @@ urlpatterns = [
 
     path('index',views.testTemp,name='Test'),
     path('register',views.register, name='register'),
+    path('registerDjango',views.registerDjango, name='registerDjango'),
+    path('details',views.regDjango, name='regDjango'),
     path('login',views.login, name='login'),
     path('logout',views.logout, name='logout'),
     #path('view/<int:key>', views.view, name='view'),
 
-]
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
