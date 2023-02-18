@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from twilio.rest import Client
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from django.http.response import HttpResponse
 from django.http.response import HttpResponseRedirect
@@ -37,15 +37,15 @@ def login(r):
         usr = RegisterUser.objects.filter(
             user_email=r.POST['user_email'],
             user_password=r.POST['user_password'],
-        )
-        if (usr[0] is not None):
-            r.session['user_id'] = usr[0].user_id
-            r.session['user_email'] = usr[0].user_email
-            return HttpResponseRedirect('index')
+        ).first()
+        if usr is not None:
+            r.session['user_id'] = usr.user_id
+            r.session['user_email'] = usr.user_email
+            return redirect('index')
         else:
             Message = {}
             Message['Alert'] = 'username or password wrong'
-            return render(r, 'login.html', Message)
+            return render(r, 'index.html', Message)
     else:
         return render(r, 'login.html')
 
@@ -72,8 +72,10 @@ def registerDjango(r):
     if form.is_valid():
         form.save()
 
-    Context = {
-        'form':form
-    }
-    return render(r,'registerDjango.html',Context)
+        Context = {
+            'form':form
+        }
+        return render (r,'registerDjango.html', Context)
+    else:
+        return render(r, 'registerDjango.html', Context)
 
