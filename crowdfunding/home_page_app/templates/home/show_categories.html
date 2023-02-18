@@ -1,0 +1,29 @@
+{% extends 'base_page.html' %}
+{% load index %}
+{% block content %}
+<div class="container">
+     <div class="row text-center" style="ml-4">
+{% for p in projects %}
+         <div class="card col-3 ml-4 mt-4 mb-4 mr-4" style="width:400px">
+    <img class="card-img-top" src="{{images|index:forloop.counter0}}" alt="Card image" style="width:100%">
+    <div class="card-body">
+      <h4 class="card-title">{{ p.title }}</h4>
+      <p class="card-text text-center">{{ p.details }}</p>
+      <a href="{% url 'project_details' p.id %}" class="btn btn-primary">See Project</a>
+    </div>
+  </div>
+{% endfor %}
+             </div>
+</div>
+<div class="container mb-4 mt-4">
+{% if tags %}
+    <h1 style="color:black">tags</h1>
+    <hr>
+    <div class="row">
+{% for tag in tags %}
+<a href="{% url 'getProjectTags' tag.id %}" class="btn btn-primary ml-4">{{ tag.name }}</a>
+{% endfor %}
+        </div>
+{% endif %}
+    </div>
+{% endblock content %}
