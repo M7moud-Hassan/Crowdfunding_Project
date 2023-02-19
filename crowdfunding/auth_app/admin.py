@@ -3,4 +3,4 @@ from .models import *
 
 admin.site.register(RegisterUser)
 
-# Register your models here.
+# Register your modals here.

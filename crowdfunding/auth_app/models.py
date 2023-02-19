@@ -6,6 +6,7 @@ from django.contrib.auth.hashers import make_password
 
 
 
+<<<<<<< HEAD
 # Create your models here.
 
 class RegisterUser(models.Model):
@@ -18,3 +19,6 @@ class RegisterUser(models.Model):
         RegexValidator(regex='^(01)[0125][0-9]{8}$', message='wrong number')])
     user_image = models.ImageField(upload_to ='image/', null=True, blank=True )
 
+=======
+# Create your modals here.
+>>>>>>> 86cee9b7c66db764b898107b63eddd4963a9490a
