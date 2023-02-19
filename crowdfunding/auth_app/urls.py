@@ -32,8 +32,6 @@ urlpatterns = [
                   path('logout',views.logout,name='logout'),
                   path('resetpassword',views.resetPassword,name='resetpassword'),
                   path('setpassword/<str:email>', views.sendEmailPassword, name='setpassword'),
-                  path('facelogin',views.facelogin, name='facelogin' ),
-                  path('facelogout',views.facelogin, name='facelogout' ),
                   path('social-auth/', include('social_django.urls',namespace='social')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

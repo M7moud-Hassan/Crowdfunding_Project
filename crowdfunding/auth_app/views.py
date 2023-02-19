@@ -216,10 +216,3 @@ def sendEmailPassword(req,email):
             return render(req,'auth/setpassword.html',context={"title":"login","email":email,"form":PasswordForm()})
     else:
         return redirect("login")
-
-def facelogin(req):
-    return render(req , 'login.html')
-
-@login_required
-def homeface(req):
-    return render(req , 'index.html')
