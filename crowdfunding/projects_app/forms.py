@@ -9,7 +9,7 @@ class ProjectForm(forms.ModelForm):
     title = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Title",
+                "placeholder": "Type tile",
                 "class": "form-control"
             }
         ))
@@ -17,16 +17,16 @@ class ProjectForm(forms.ModelForm):
     details = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                "placeholder": "Details",
+                "placeholder": "Type details",
                 "class": "form-control",
-                'rows': '3'
+                'rows': '2'
             }
         ))
 
     total_target = forms.FloatField(
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Total Target",
+                "placeholder": "Type Total Target",
                 "class": "form-control",
                            }
         ))
@@ -34,7 +34,7 @@ class ProjectForm(forms.ModelForm):
     start_time = forms.DateTimeField(
         widget=NumberInput(
             attrs={
-                'placeholder': 'Start date & time',
+                'placeholder': 'Start date',
                 'type': 'datetime-local',
                 'class': 'form-control'
             }
@@ -43,7 +43,7 @@ class ProjectForm(forms.ModelForm):
     end_time = forms.DateTimeField(
         widget=NumberInput(
             attrs={
-                'placeholder': 'End date & time',
+                'placeholder': 'End date',
                 'type': 'datetime-local',
                 'class': 'form-control'
             }
@@ -69,11 +69,6 @@ class ProjectForm(forms.ModelForm):
                   'category',
                   'tag')
 
-
-class ReportForm(forms.ModelForm):
-    class Meta:
-        model = ProjectReport
-        fields = ['report']
 
 class ReplyForm(forms.ModelForm):
 
