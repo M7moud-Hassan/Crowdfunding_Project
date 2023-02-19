@@ -1,9 +1,19 @@
 {% extends 'base_page.html' %}
-
 {% block title %} Create Project {% endblock title %}
-
+ {% block mystyle %}
+<style>
+        #id_tag{
+        max-height:200px;
+         overflow-y: scroll;
+        text-align: left;
+        }
+        #id_tag input{
+        width:auto;
+        }
+    </style>
+ {% endblock mystyle %}
 {% block content %}
-
+{{ categories }}
 <form role="form"  method="post" autocomplete="off" enctype="multipart/form-data">
  {%csrf_token%}
  <div id="svg_wrap"></div>
@@ -44,7 +54,7 @@
 
 
 <section>
- <p>Contact information</p>
+ <p>project information tag and categories</p>
 <div class="mb-3">
             <label class="form-label">Category</label>
 
@@ -57,24 +67,25 @@
             <label class="form-label">Add tag</label>
             <input type="text" class="inp form-control my-1" maxlength="8" name="newTag" class="form-control"  id="id_tag"/>
             <p style="margin: 2px; color: black; font-size: small; font-weight: 550;">or choose one : </p>
-            {{ form.tag }}
+
+                     {{ form.tag }}
           </div>
           <span class="text-error">{{ form.tag.errors }}</span>
 
 </section>
 
-<section>
- <p>General condtitions</p>
- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</section>
+
     <section>
- <p>Address</p>
+ <p>images</p>
      <div class="mb-3">
             <label class="form-label">Photos</label><br />
             <input class="form-control" type="file" name="images" multiple required>
           </div>
 </section>
-
+<section>
+ <p>General condtitions</p>
+ <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</section>
 <div class="container" style="text-align:center">
  <div class="button" id="prev">&larr; Previous</div>
 <div class="button" id="next">Next &rarr;</div>

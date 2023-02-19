@@ -1,0 +1,65 @@
+{% extends 'base_page.html' %}
+
+{% block title %}
+Login
+{% endblock title %}
+
+{% block content %}
+
+<dir class="container mb-4 mb-4">
+  <h1> Login </h1>
+  <div class="row">
+    <div class="col-4"></div>
+            <div class="col-4">
+          <div class="card card-plain">
+            <div class="card-header pb-0 text-left">
+              <h4 class="font-weight-bolder">LogIn</h4>
+              <p class="mb-0">
+                {% if msg %}
+              <div class="alert alert-warning ">
+                {{ msg | safe }}
+              </div>
+              {% else %}
+              Add your credentials
+              {% endif %}
+              </p>
+            </div>
+            <div class="card-body">
+
+              <form method="post" role="form">
+
+                {% csrf_token %}
+
+                <div class="mb-3">
+                  {{ login_form.email }}
+                </div>
+                <div class="mb-3">
+                  {{ login_form.password }}
+                </div>
+                <div class="text-center">
+                  <button type="submit" name="login" class="btn btn-lg btn-primary btn-lg ">Sign
+                    in</button>
+                  <button class="btn btn-lg btn-primary btn-lg mt-3"><a  style="color:white" href="{% url 'social:begin' 'facebook' %}">
+                    Login with Facebook</a></button>
+
+                </div>
+              </form>
+            </div>
+            <div class="card-footer text-center pt-0 px-lg-2 px-1">
+              <p class="mb-4 text-sm mx-auto">
+                Don't have an account?
+                <a href="{% url 'register' %}" class="text-primary text-gradient font-weight-bold">Sign UP</a>
+              </p>
+              <p class="mb-4 text-sm mx-auto">
+                Forget Your Password?
+                <a class="text-primary text-gradient font-weight-bold" href="{% url 'resetpassword' %}">Reset Passowrd</a>
+              </p>
+
+            </div>
+          </div>
+            </div>
+    <div class="col-4"></div>
+</dir>
+</div>
+<div style="height:100px"></div>
+{% endblock content %}

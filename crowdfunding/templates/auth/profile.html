@@ -1,0 +1,162 @@
+{% extends 'base_page.html' %}
+{% load index %}
+{% block stylesheets %}
+{% endblock stylesheets %}
+{% block body_class %} profile-body {% endblock body_class %}
+{% block content %}
+
+<div class="modal fade" id="deleteAccount" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> Delete Account</h5>
+            </div>
+            <form role="form" method="post" autocomplete="off" action="{% url 'deleteAccount' %}">
+                {% csrf_token %}
+                {{ form_delete }}
+                <div class="modal-footer justify-content-between">
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="user-profile" class="container my-2 py-2">
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="profile-info shadow-lg p-0">
+                        <div class="bg-white rounded px-5 py-4 d-flex justify-content-around">
+                            <div class="d-flex">
+                                <div class="">
+                                    <p>First Name :</p>
+                                    <p>Last Name :</p>
+                                    <p>Country :</p>
+                                </div>
+                                <div class="">
+                                    <p class="mx-2 text-dark font-weight-bold">{{user.first_name}}</p>
+                                    <p class="mx-2 text-dark font-weight-bold">{{user.last_name}}</p>
+                                    {% if user.country %}
+                                    <p class="mx-2 text-dark font-weight-bold">{{user.country}}</p>
+                                    {% else %}
+                                    <p class="mx-2">
+                                       not found
+                                    </p>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="d-flex">
+                                <div class="">
+                                    <p>Email :</p>
+                                    <p>Mobile :</p>
+                                    <p>Birthday :</p>
+                                </div>
+                                <div class="">
+                                    <p class="mx-2 text-dark font-weight-bold">{{user.user_email}}</p>
+                                    <p class="mx-2 text-dark font-weight-bold">{{ user.user_mobile }}</p>
+                                    {% if user.birthdate %}
+                                    <p class="mx-2 text-dark font-weight-bold">{{user.birthdate}}</p>
+                                    {% else %}
+                                    <p class="mx-2">
+                                        not found
+                                    </p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="">
+                                    <p>facebook profile :</p>
+                                </div>
+                                <div class="">
+                                       {% if user.facebook_profile %}
+                                    <p class="mx-2 text-dark font-weight-bold">{{user.facebook_profile}}</p>
+                                    {% else %}
+                                    <p class="mx-2">
+                                        not found
+                                    </p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-4">
+                    <div class="row ml-4">
+                    <div class="col-5">
+                        <div class="col-md-12 bg-white rounded px-4 py-4 d-flex shadow-lg p-0">
+                            <h5><i class="fa fa-coins text-primary"></i></h5>
+                            <h5 class="mx-3">{{ donations|length }} <span
+                                    class="text-light text-dark mx-1">Donations</span></h5>
+                        </div>
+                    </div>
+                    <div class="col-5 ml-4">
+                        <div class="col-md-12 bg-white rounded px-4 py-4 d-flex shadow-lg p-0">
+                            <h5><i class="fa fa-chart-pie text-primary"></i></i></h5>
+                            <h5 class="mx-3">{{ projects|length }} <span
+                                    class="text-light text-dark mx-1">Projects</span></h5>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-md-12 mt-3" style="padding-right: 0;">
+                    <table class="table table-hover bg-white rounded shadow-lg p-0 text-center">
+                        <thead>
+                            <tr>
+                                <th class="px-5 py-3" scope="col">Title</th>
+                                <th class="px-5 py-3" scope="col">Donation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if donations %}
+                                {% for donation in donations%}
+                                <tr>
+                                    <td class="px-5 py-3">
+                                        <a href="{% url 'project_details'  donation.project_id %}">
+                                            {{donation.project.title|truncatewords:2}}
+                                        </a>
+                                    </td>
+                                    <td class="px-5 py-3">{{donation.donation}} L.E </td>
+                                </tr>
+                                {%endfor%}
+                           {%endif%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 " style="padding-right: 0;">
+                    <div class="row">
+                        {% for project in projects%}
+                        <div class="col-md-3">
+                            <a href="{% url 'project_details' project.id %}">
+                                <div style="height:150px">
+                                    <img src="{{images|index:forloop.counter0}}" alt="project-img"
+                                        class="img-fluid rounded" style="height: inherit; width: 100%;">
+                                </div>
+                            </a>
+                            <div class="d-flex justify-content-between bg-white px-3 pt-3 mb-0">
+                                <a href="{% url 'project_details' project.id %}">
+                                    <h5>{{ project.title|title }}</h5>
+                                </a>
+                                <p>{{project.total_target}} L.E.</p>
+                            </div>
+                            <a href="{% url 'project_details' project.id %}">
+                                <p class="bg-white px-3 pb-3">{{project.details|truncatewords:20}}</p>
+                            </a>
+                        </div>
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button  type="button" class="btn btn-primary btn-lg" style="position:fixed; bottom:20px;right:20px; z-index:10;">
+    <a href="{% url 'add_project' %}" class="visually-hidden text-light">Add Category</a>
+  </button>
+{% endblock content %}

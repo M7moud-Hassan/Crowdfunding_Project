@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
-import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,12 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
-    'auth_app',
-=======
     'projects_app',
-    'projects_app.templatetags.index'
->>>>>>> 86cee9b7c66db764b898107b63eddd4963a9490a
+    'auth_app',
+    'home_page_app',
+    'projects_app.templatetags.index',
+    'social_django'
 ]
 
 MIDDLEWARE = [
@@ -54,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
+
 ]
 
 ROOT_URLCONF = 'crowdfunding.urls'
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'crowdfunding.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR/'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
 
             ],
         },
@@ -86,11 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'crowdfunding',
         'USER':'postgres',
-<<<<<<< HEAD
         'PASSWORD':'0965211901',
-=======
-        'PASSWORD':'123245',
->>>>>>> 86cee9b7c66db764b898107b63eddd4963a9490a
         'HOST':'127.0.0.1',
         'PORT':5432
     }
@@ -122,7 +120,6 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-
 USE_I18N = True
 
 USE_TZ = True
@@ -131,12 +128,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'tstatic/'
+STATIC_URL = 'static/'
 STATICFILES_DIRS=['static']
 
-MEDIA_URL = '/media/'
-#MEDIA_ROOT = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -147,3 +141,27 @@ MEDIA_URL = '/media/'
 
 # Path where media is stored
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'soonfu0@gmail.com'
+EMAIL_HOST_PASSWORD = 'ezjbcoviunkpwsdw'
+
+#social app custom settings
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
+SOCIAL_AUTH_FACEBOOK_KEY = "966812877558013"
+SOCIAL_AUTH_FACEBOOK_SECRET = "28f2c365e8cd98268b3c455bb6b6e875"
+
+# for extra info
+SOCIAL_AUTH_FACEBOOK_SCOPE = [
+    'email',
+]
