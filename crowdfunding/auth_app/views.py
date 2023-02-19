@@ -11,6 +11,7 @@ from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from django.http.response import HttpResponse
 from django.http.response import HttpResponseRedirect
+from django.contrib.auth.models import User
 from .form import UserRegistrationForm
 
 # Create your views here.
@@ -45,9 +46,9 @@ def login(r):
         else:
             Message = {}
             Message['Alert'] = 'username or password wrong'
-            return render(r, 'index.html', Message)
+            return render(r, 'login.html', Message)
     else:
-        return render(r, 'login.html')
+        return render(r, 'login.html' )
 
 def logout(r):
     r.session.clear()
@@ -71,11 +72,10 @@ def registerDjango(r):
     form = UserRegistrationForm(r.POST or None)
     if form.is_valid():
         form.save()
-
         Context = {
             'form':form
         }
-        return render (r,'registerDjango.html', Context)
+        return render (r,'login.html', Context)
     else:
-        return render(r, 'registerDjango.html', Context)
+        return render(r, 'registerDjango.html')
 
