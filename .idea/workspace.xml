@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="93e093e2-3455-4faa-930d-3f47dcc5b1fa" name="Changes" comment="" />
+=======
+    <list default="true" id="93e093e2-3455-4faa-930d-3f47dcc5b1fa" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/crowdfunding/projects_app/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crowdfunding/static/css/project_add.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crowdfunding/static/js/project_add.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crowdfunding/templates/projects/add_project.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crowdfunding/templates/projects/projects_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Crowdfunding_Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Crowdfunding_Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crowdfunding/crowdfunding/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/crowdfunding/crowdfunding/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crowdfunding/projects_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/crowdfunding/projects_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crowdfunding/projects_app/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/crowdfunding/projects_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/crowdfunding/projects_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crowdfunding/projects_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/crowdfunding/projects_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crowdfunding/templates/base_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/crowdfunding/templates/base_page.html" afterDir="false" />
+    </list>
+>>>>>>> mahmoudali
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2LVSY2ognWxm5tnKv3x5LAMJB4w" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+<<<<<<< HEAD
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+>>>>>>> mahmoudali
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="93e093e2-3455-4faa-930d-3f47dcc5b1fa" name="Changes" comment="" />
+      <created>1675954813943</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1675954813943</updated>
+    </task>
+    <servers />
+  </component>
+</project>
