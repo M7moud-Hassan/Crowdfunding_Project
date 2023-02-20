@@ -13,7 +13,6 @@ Including another URLconf
     1. Import the includes() function: from django.urls import includes, path
     2. Add a URL to urlpatterns:  path('blog/', includes('blog.urls'))
 """
-from home_page_app import urls as home_page
 from django.contrib import admin
 from django.urls import path,include
 from projects_app import  urls as projcets_urls
@@ -22,9 +21,11 @@ from django.contrib import admin
 from django.urls import path, include  # add this
 from django.conf.urls.static import static
 from django.conf import settings
-
+from home_page_app import urls as home_page
+from auth_app import urls as auth_url
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('projects/', include(projcets_urls)),
-    path('homePage/',include(home_page))
+    path('homePage/',include(home_page)),
+    path('',include(auth_url))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

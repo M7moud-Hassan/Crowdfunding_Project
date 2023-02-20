@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'projects_app',
+    'auth_app',
+    'home_page_app',
     'projects_app.templatetags.index'
 ]
 
@@ -82,11 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'crowdfunding',
         'USER':'postgres',
-<<<<<<< HEAD
-        'PASSWORD':'234',
-=======
-        'PASSWORD':'1234',
->>>>>>> rania
+        'PASSWORD':'mahm01142',
         'HOST':'127.0.0.1',
         'PORT':5432
     }
@@ -139,3 +137,10 @@ MEDIA_URL = '/media/'
 
 # Path where media is stored
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'soonfu0@gmail.com'
+EMAIL_HOST_PASSWORD = 'ezjbcoviunkpwsdw'

@@ -3,4 +3,4 @@ from .models import *
 admin.site.register(Category)
 admin.site.register(Tag)
 admin.site.register(Project)
-admin.site.register(User)
+admin.site.register(RegisterUser)

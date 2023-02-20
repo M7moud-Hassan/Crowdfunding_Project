@@ -59,6 +59,20 @@ class ProjectForm(forms.ModelForm):
     tag = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(),
                                          widget=forms.CheckboxSelectMultiple())
 
+    def clean(self):
+        data = super().clean()
+        start_date = data.get("start_time")
+        end_date = data.get("end_time")
+        today_date = datetime.strptime(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "%Y-%m-%d %H:%M:%S")
+        if today_date.date() > end_date.date():
+            self._errors["end_time"] = self.error_class(["End date should be greater than Current date"])
+        else:
+            if end_date <= start_date:
+                self._errors["end_time"] = self.error_class(["End date should be greater than start date."])
+        total_target=data.get("total_target")
+        if total_target<100:
+            self._errors["total_target"] = self.error_class(["total target should great than 100 "])
+
     class Meta:
         model = Project
         fields = ('title',

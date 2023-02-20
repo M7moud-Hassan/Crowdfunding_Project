@@ -1,0 +1,79 @@
+{% extends 'base_page.html' %}
+
+{% block title %} Edit Profile {% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="py-5 mx-auto">
+      <div class="col-md-8 card d-flex shadow-lg p-4 mt-5 mx-auto">
+        <div class="text-center">
+          <h3 class="font-weight-bolder">Edit Profile</h3>
+        </div>
+        <div class="card card-plain">
+          <form method="post" action="" role="form" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="mb-3">
+              <label class="form-label">First Name</label>
+              {{ form.first_name }}
+            </div>
+            <span class="text-error text-danger">{{ form.first_name.errors }}</span>
+
+            <div class="mb-3">
+              <label class="form-label">Last Name</label>
+              {{ form.last_name }}
+            </div>
+            <span class="text-error text-danger">{{ form.last_name.errors }}</span>
+
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              {{ form.user_password }}
+            </div>
+            <span class="text-error text-danger">{{ form.user_password.errors }}</span>
+
+            <div class="mb-3">
+              <label class="form-label">Confirm Password</label>
+              {{ form.confirmPassword }}
+            </div>
+            <span class="text-error text-danger">{{ form.confirmPassword.errors }}</span>
+
+            <div class="mb-3">
+              <label class="form-label">Mobile</label>
+              {{ form.user_mobile }}
+            </div>
+            <span class="text-error text-danger">{{ form.user_mobile.errors }}</span>
+
+            <div class="mb-3">
+              <label class="form-label">image</label>
+              {{ form.user_image }}
+            </div>
+            <span class="text-error text-danger">{{ form.user_image.errors }}</span>
+
+            <div class="mb-3">
+              <label class="form-label">Facebook Account</label>
+              {{ form.facebook_profile }}
+            </div>
+            <span class="text-error text-danger">{{ form.facebook_profile.errors }}</span>
+             <div class="mb-3">
+              <label class="form-label">Country</label>
+              {{ form.country }}
+            </div>
+            <span class="text-error text-danger">{{ form.country.errors }}</span>
+
+            <div class="mb-3">
+              <label class="form-label">Birthdate</label>
+              {{ form.birthdate }}
+            </div>
+            <span class="text-error text-danger">{{ form.birthdate.errors }}</span>
+            <div class="text-center">
+              <button type="submit" name="submit"
+                class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Update</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

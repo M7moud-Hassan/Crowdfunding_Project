@@ -10,6 +10,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>{% block title %}
+    title
 {% endblock %}
 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -61,22 +62,29 @@ color:black;
 	</style>
 </head>
 <body id="top">
+{% if title != 'login' %}
 <div class="wrapper col1">
   <div id="header">
     <div id="logo">
-      <h1><a href="#">BusinessToday</a></h1>
-      <p><strong>Free Website Template</strong></p>
+      <a href="{% url 'profile' %}">
+          <img  src="{{user.user_image.url}}" class="card-img-top border border-2 rounded-circle my-3"
+                    alt="profile img" style="width: 100px; height:100px;">
+      </a>
+      <h4 class="text-black font-weight-bolder mt-2 ">{{user.first_name}} {{user.last_name}}</h4>
+
     </div>
     <h1 style="float:right">{{ show }}</h1>
     <br class="clear" />
   </div>
 </div>
+
 <div class="wrapper col2">
   <div id="topbar">
     <div id="topnav">
       <ul>
-        <li class="active"><a href="{% url 'home_page' %}">Home</a></li>
-        <li><a href="#">Categories</a>
+       {% if title != 'profile' %}
+          <li class="active"><a href="{% url 'home_page' %}">Home</a></li>
+         <li><a href="#">Categories</a>
           <ul>
             {% for cat in categories %}
             <li><a href="{% url 'getCategories' cat.id %}">{{cat.name}}</a></li>
@@ -84,19 +92,32 @@ color:black;
           </ul>
         </li>
         <li class="last"><a href="{% url 'getAllMyProjects' %}">My Projects</a></li>
+        {% else %}
+          <li class="active"><a href="{% url 'home_page' %}">Home</a></li>
+         <li><a href="{% url 'edit_profile' %}">Edit Profile</a>
+        </li>
+        <li class="last"><a href="#" data-toggle="modal" data-target="#deleteAccount">Delete Acount</a></li>
+        {% endif %}
 
       </ul>
     </div>
     <div id="search">
+        {% if title == 'profile' %}
+        <ul>
+         <li class="last text-light"><a href="{% url 'logout' %}">logout</a></li>
+            </ul>
+        {%else%}
       <form action="{% url 'search' %}" method="post">
         {% csrf_token %}
           <input type="text" name="search"/>
           <input type="submit" name="go" id="go" value="Search" />
       </form>
+        {%endif%}
     </div>
     <br class="clear" />
   </div>
 </div>
+{% endif %}
 {% block content %}
 {% endblock %}
 <div class="wrapper col6">
