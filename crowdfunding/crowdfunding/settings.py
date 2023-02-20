@@ -82,7 +82,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'crowdfunding',
         'USER':'postgres',
+<<<<<<< HEAD
         'PASSWORD':'234',
+=======
+        'PASSWORD':'1234',
+>>>>>>> rania
         'HOST':'127.0.0.1',
         'PORT':5432
     }
