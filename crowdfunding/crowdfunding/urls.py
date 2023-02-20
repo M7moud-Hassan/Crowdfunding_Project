@@ -21,8 +21,11 @@ from django.contrib import admin
 from django.urls import path, include  # add this
 from django.conf.urls.static import static
 from django.conf import settings
-
+from home_page_app import urls as home_page
+from auth_app import urls as auth_url
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('projects/', include(projcets_urls)),
+    path('homePage/',include(home_page)),
+    path('',include(auth_url))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

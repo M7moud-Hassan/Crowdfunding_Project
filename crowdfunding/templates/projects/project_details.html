@@ -1,21 +1,14 @@
 {% extends 'base_page.html' %}
-{% load static %}
 {% load index %}
-{% block title %} Project Details {% endblock title %}
-{% block stylesheets %}
-<link rel="stylesheet" href="{% static 'css/project-details.css' %}">
-<link rel="stylesheet" href="{% static 'css/rate.css' %}">
-
-{% endblock stylesheets %}
-
+{% block title %}
+project details
+{% endblock title %}
 {% block content %}
-
-
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Confirm Donation</h5>
+                <h5 class="modal-title" id="exampleModalLabel"> Donation</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -26,12 +19,11 @@
                 <div class="modal-body">
 
                     <input type="text" name="donate" placeholder="donation amount" class="form-control"
-                        onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
                         value="" required />
                 </div>
 
                 <div class="modal-footer justify-content-between">
-                    <button type="submit" class="btn bg-gradient-secondary">Donate</button>
+                    <button type="submit" class="btn btn-primary">Donate</button>
                 </div>
             </form>
         </div>
@@ -42,7 +34,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Delete Project</h5>
+          <h5 class="modal-title" id="exampleModalLabe" >Delete Project</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -50,11 +42,11 @@
           {% csrf_token %}
           <div class="modal-body">
             <p>
-               delete " {{ project.title|title }} " project.<br/>
+               delete " {{ project.title }} " project.<br/>
             </p>
           </div>
           <div class="modal-footer justify-content-between">
-              <button  type="submit" class="btn bg-gradient-secondary text-regular" {% if donation > check_target %}disabled{% endif %}><i class="fa-solid fa-trash"></i><small class="mx-2">Delete Project</small>
+              <button  type="submit" class="btn btn-primary text-regular"> <i class="fa-solid fa-trash"></i><small class="mx-2">Delete Project</small>
               </button>
           </div>
         </form>
@@ -62,12 +54,12 @@
     </div>
   </div>
 
-<div class="container">
+<div class="container" style="width:100%">
   <div class="row">
-    <div class="py-4 mx-auto mt-5">
+    <div class="" style="width:100%">
       <div class="col-lg-12 mx-auto d-flex justify-content-center flex-column">
         <div class="d-flex justify-content-center p-5 flex-column">
-          <h2 class="mb-5">{{ project.title|title }}</h2>
+          <h2 class="mb-5" style="color:black">{{ project.title }}</h2>
           <div class="card card-plain d-flex flex-row justify-content-between">
             <!-- Project Details On Left -->
             <div class="col-md-7">
@@ -103,39 +95,53 @@
                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   DONATE
 </button>
-                  <form style="display:inline" action="{% url 'add_report' project.id %}" method="POST" class="text-center">
+                  {% if is_report %}
+                  <form style="display:inline" action="{% url 'remove_report' project.id %}" method="POST" class="text-center">
+                  {%csrf_token%}
+                  <button class="btn btn-transparent shadow-none text-center mt-2 p-0" href=""><small class="mx-2">UnReport this project</small>
+                  </button>
+                </form>
+                  {% else %}
+                   <form style="display:inline" action="{% url 'add_report' project.id %}" method="POST" class="text-center">
                   {%csrf_token%}
                   <button class="btn btn-transparent shadow-none text-center mt-2 p-0" href=""><small class="mx-2">Report this project</small>
                   </button>
                 </form>
+                  {% endif %}
               </div>
                 {% endif %}
               <hr class="my-5" />
               <!-- Comments -->
               <h5 class="mt-5">Comments ({{ comments|length }}) :</h5>
               <ul class="list-unstyled mt-4">
-                {%for comment in comments%}
+                {%for comment in comments %}
                 <li class="">
                   <div class="comment d-flex">
                     <div class="col-md-1">
-                      <img class="rounded-circle img-thumbnail" src="{{ comment.user.profile_img.url }}" style="width: 60px;height:60px;"/>
+                      <img class="rounded-circle img-thumbnail" src="{{ comment.user.user_image.url }}" style="width: 60px;height:60px;"/>
                     </div>
                     <div class="col-md-8 mx-3">
                       <h6 class="comment-header mb-0 d-flex">
                         {{ comment.user|title }}
+                          {% if comment.user.id != user.id%}
                         <div class="">
                           <!-- Report Comment -->
-                          <form action="{% url 'addCommentReport' comment.id %}" method="POST" class="mx-3">
+                            {% if comments_report|index:forloop.counter0 %}
+                          <form action="{% url 'removeCommentReport' comment.id %}" method="POST" class="mx-3">
+                            {%csrf_token%}
+                            <button type="submit" class="btn btn-transparent shadow-none text-center mt-2 p-0">
+                              UnReport</button>
+                          </form>
+                            {% else %}
+                            <form action="{% url 'addCommentReport' comment.id %}" method="POST" class="mx-3">
                             {%csrf_token%}
                             <button type="submit" class="btn btn-transparent shadow-none text-center mt-2 p-0">
                               Report</button>
                           </form>
+                            {% endif %}
                         </div>
+                          {% endif %}
                       </h6>
-
-                      <p class="comment-time">
-                        <small><small>{{ comment.created_at }}</small></small>
-                      </p>
                       <p class="comment-content">
                         {{comment.comment}}
                       </p>
@@ -156,7 +162,7 @@
                           action="{% url 'comment_reply' comment.id %}">
                           {% csrf_token %}
                           <textarea id="" name="{{fields.name}}" rows="2" class="col-md-12 form-control"></textarea>
-                          <button type="submit" class="btn bg-gradient-light w-20 mt-2">
+                          <button type="submit" class="btn btn-primary">
                             reply
                           </button>
                         </form>
@@ -171,15 +177,13 @@
                           <li class=" mt-1">
                             <div class="comment d-flex">
                               <div class="col-md-1">
-                                <img class="rounded-circle img-thumbnail" src="{{ reply.user.profile_img.url }}"  style="width: 40px;height:40px;" />
+                                <img class="rounded-circle img-thumbnail" src="{{ reply.user.user_image.url }}"  style="width: 40px;height:40px;" />
                               </div>
                               <div class="col-md-8 mx-3">
                                 <h6 class="comment-header mb-0">
                                   {{ reply.user|title }}
                                 </h6>
-                                <p class="comment-time">
-                                  <small><small>{{ reply.created_at }}</small></small>
-                                </p>
+
                                 <p class="comment-content">
                                   {{reply.reply}}
                                 </p>
@@ -202,8 +206,8 @@
                 <form class="d-flex flex-column align-items-end" method="post"
                   action="{% url 'add_comment' project.id %}">
                   {% csrf_token %}
-                  <textarea id="" name="comment" rows="2" class="col-md-12 form-control"></textarea>
-                  <button type="submit" class="btn bg-gradient-light w-20 mt-2">
+                  <textarea id="" name="comment" rows="2" class="col-md-11 form-control"></textarea>
+                  <button type="submit" class="btn btn-primary">
                     Comment
                   </button>
                 </form>
@@ -211,26 +215,28 @@
 
             </div>
             <!-- Donate Card On Right -->
-              <div class="card col-md-4 shadow-lg py-4 h-100 position-sticky" style="top: 6rem">
-
-              <div class="col-lg-10 mx-auto">
+              <div class="card col-md-4 shadow-lg py-4 h-100">
+              <div class="col-lg-10 ">
+                  <p>donation</p>
                 <h3 class="d-flex align-items-baseline">
                   {{ donation }} <small> L.E. </small>
-                  <span class="text-secondary mx-2">
-                    <p> {{ project.total_target }} L.E. </p>
-                  </span>
                 </h3>
-                <!-- {{ donation_average }} -->
+                  <p style="font-size:15px">target</p>
+                <h3 class="d-flex align-items-baseline">
+                  {{ project.total_target }}  <small> L.E. </small>
+                </h3>
+
                 <div class="">
-                  <p> avrage donation is {{donation_average}}%</p>
+                  <p style="font-size:15px"> avrage  is {{donation_average|floatformat:1}}%</p>
                 </div>
 
-                <div class="d-flex justify-content-between py-3">
-                  <div class="d-flex flex-column align-items-center">
+                <div class="justify-content py-3">
+                  <div class=" flex-column align-items-center">
                     <span>{{ donations }}</span>
-                    <span>Donations</span>
+                    <span style="font-size:15px">Donations</span>
                   </div>
-                  <div class="d-flex flex-column align-items-center">
+                    <br>
+                  <div class="flex-column align-items-center">
                     <span>{{ average_rating|floatformat:1 }}</span>
                     <span>
                         <svg viewBox="0 0 1000 200" class="rating m-0">
@@ -249,13 +255,21 @@
                         </svg>
                     </span>
                   </div>
-                  <div class="d-flex flex-column align-items-center">
+                    <br>
+                    {% if owner_project %}
+                    <div class=" flex-column align-items-center">
+                    <span>{{ report_num.project__count }}</span>
+                    <span>report</span>
+                  </div>
+                    <br>
+                    {% endif %}
+                  <div class="flex-column align-items-center">
                     {% if days <= 0 %}
                       <span> 0 </span>
                     {% else %}
                       <span> {{ days }} </span>
                     {% endif %}
-                      <span>Days</span>
+                      <span style="font-size:15px">Days</span>
                   </div>
                 </div>
               </div>
@@ -293,8 +307,6 @@
                   </form>
                 </div>
 
-
-
               {% endif %}
 
             </div>
@@ -319,5 +331,8 @@
     </div>
   </div>
 </div>
+<button  type="button" class="btn btn-primary btn-lg" style="position:fixed; bottom:20px;right:20px; z-index:10;">
+    <a href="{% url 'add_project' %}" class="visually-hidden text-light">Add Category</a>
+  </button>
 {% endblock content %}
 
