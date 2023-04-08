@@ -1,0 +1,44 @@
+ .closebtn{
+            background-color: rgb(51, 49, 63);
+            font-size: 1.5vw;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            width:1.5em;
+
+        }
+        .register{
+        display:block;
+        z-index:100;
+            background-color: rgb(12, 6, 57);
+
+        }
+        .register .divider{
+            height: 5px;
+            background-color: brown;
+            margin-top: 2em;
+        }
+        .register input{
+            margin-bottom: 2em;
+            width: 75%;
+
+        }
+        .register .checkbox_div{
+            margin: 2em;
+            width: 75%;
+
+        }
+        .register .checkbox_div input{
+            margin-left: 0;
+           width: auto;
+        }
+        .register .terms{
+            color: rgb(13, 0, 109);
+        }
+        .register form{
+            padding: 2em;
+            background-color: rgb(51, 49, 63);
+        }
+        .register .submit{
+            background-color: rgb(13, 0, 109);;
+        }

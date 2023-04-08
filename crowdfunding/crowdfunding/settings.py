@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'projects_app',
     'auth_app',
     'home_page_app',
-    'projects_app.templatetags.index'
+    'projects_app.templatetags.index',
+"verify_email.apps.VerifyEmailConfig",
 ]
 
 MIDDLEWARE = [
@@ -143,4 +144,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'soonfu0@gmail.com'
-EMAIL_HOST_PASSWORD = 'ezjbcoviunkpwsdw'
+EMAIL_HOST_PASSWORD = 'wrubmavtqvvqhyeg'

@@ -27,5 +27,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('projects/', include(projcets_urls)),
     path('homePage/',include(home_page)),
-    path('',include(auth_url))
+    path('',include(auth_url)),
+path('verification/', include('verify_email.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

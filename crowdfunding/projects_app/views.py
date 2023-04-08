@@ -187,7 +187,7 @@ def addReport(req, project_id):
     if 'user_id' not in req.session:
         return HttpResponseRedirect('/homePage')
     else:
-        user = RegisterUser.objects.get(userr_id=req.session['user_id'])
+        user = RegisterUser.objects.get(user_id=req.session['user_id'])
         project = Project.objects.get(id=project_id)
         ProjectReport.objects.create(
             project=project,

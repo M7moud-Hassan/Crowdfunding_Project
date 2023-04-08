@@ -1,14 +1,20 @@
 {% extends 'base_page.html' %}
+{% load static %}
+{% block mystyle %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+  {% endblock mystyle %}
+
 {%block title%}
     Register Page
 {%endblock%}
-{%block content %}
-  <h1> Registration </h1>
-<div class="container">
-  <div class="row">
-    <div class="col-3"></div>
-    <div class="col-6 mb-5">
-              <form method="post" action="" role="form" enctype="multipart/form-data">
+
+
+{% block content %}
+
+<dir class="container login mb-4 mt-4 row">
+         <div class="col-6">
+           <h4 class="font-weight-bolder text-center" style="color:#800000">Register</h4>
+              <form method="post" class="p-4" action="" role="form" enctype="multipart/form-data">
 
                 {% csrf_token %}
 
@@ -50,7 +56,10 @@
                 </div>
               </form>
 </div>
-    <div class="col-3"></div>
+  <div class="col-6 containerImage">
   </div>
-</div>
+</dir>
 {% endblock content %}
+
+
+

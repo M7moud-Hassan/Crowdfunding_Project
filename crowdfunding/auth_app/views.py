@@ -4,7 +4,7 @@ from .models import *
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from .form import UserRegistrationForm, LoginForm, EditProfileForm, DeleteAccountForm, PasswordEmailForm, PasswordForm
-
+from verify_email.email_handler import send_verification_email
 
 @require_http_methods(["GET", "POST"])
 def register(req):
@@ -23,6 +23,7 @@ def register(req):
                                                    user_password=password,
                                                    user_mobile=phone, user_image=image)
                 user.is_active = False
+#                inactive_user = send_verification_email(request, form)
                 user.save()
                 # send verification email
                 subject = 'Verify Your Email'
@@ -30,7 +31,7 @@ def register(req):
                     user.user_id)
                 from_email = 'soonfu0@gmail.com'
                 recipient_list = [email]
-                send_mail(subject, message, from_email, recipient_list)
+                #send_mail(subject, message, from_email, recipient_list)
                 msg = 'Please confirm your email address to complete the registration'
                 form = LoginForm()
                 return render(req, "auth/login.html", context={"login_form": form, "msg": msg, "title": "login"})
@@ -63,7 +64,8 @@ def login(req):
             else:
                 msg = 'Invalid email or password.'
         form = LoginForm()
-        return render(req, "auth/login.html", context={"login_form": form, "msg": msg, "title": "login"})
+        form2 = UserRegistrationForm()
+        return render(req, "auth/home.html", context={"login_form": form, "form":form2,"msg": msg, "title": "login"})
     else:
         return redirect("profile")
 
